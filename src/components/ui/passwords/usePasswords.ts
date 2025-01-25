@@ -11,7 +11,7 @@ export const usePasswords = () => {
     urls: UrlType[],
     onAddPassword: ({ obj, url }: AddPasswordObj) => void
   ) => {
-    const sort1 = data.split('\n').filter(str => str != '')
+    const sort1 = data.split('\r\n').filter(str => str != '')
     const sort2: PasswordType[] = []
     for (let i = 0; i < sort1.length; ) {
       sort2.push({

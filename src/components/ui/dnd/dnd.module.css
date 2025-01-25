@@ -1,0 +1,32 @@
+.wrapper {
+  position: relative;
+}
+.wrapper[data-disabled='true'] {
+  cursor: not-allowed;
+}
+.wrapper[data-disabled='true']::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.dropTarget {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  margin: 20px 0;
+  border: 1px dashed black;
+  border-radius: 5px;
+  user-select: none;
+  color: black;
+}
+
+.dropTarget[data-active='true'] {
+  border: 1px dashed #0022f5;
+  color: #0022f5;
+}
