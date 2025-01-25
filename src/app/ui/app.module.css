@@ -1,0 +1,14 @@
+.main {
+  display: flex;
+  gap: 100px;
+}
+
+.cookies {
+  display: flex;
+  flex-direction: column;
+}
+
+.passwords {
+  display: flex;
+  flex-direction: column;
+}
