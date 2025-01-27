@@ -33,7 +33,7 @@ export const CookiesList = ({ urls, file }: Props) => {
   return (
     <>
       <ListItemButton onClick={handleClick}>
-        <ListItemText primary={`File name: ${file.name}`} />
+        <ListItemText primary={`File name: ${file.name} ${Math.ceil(file.size / 1024)} KB`} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
 

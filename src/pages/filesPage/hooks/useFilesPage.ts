@@ -38,7 +38,6 @@ export const useFilesPage = ({ files, readPasswords, readCookies }: Props) => {
     passwords.forEach((f, index) => {
       readPasswords({ file: f, passwords: passObj }).then(
         (value: PayloadAction<{ res: FileReaderResponse; passwords: PasswordsObject }>) => {
-          console.log(value)
           const data = value.payload.res.result
           sortPass(data, passUrls, onAddPassword, index)
         }
@@ -50,7 +49,6 @@ export const useFilesPage = ({ files, readPasswords, readCookies }: Props) => {
     cookies.forEach((f, index) => {
       readCookies({ file: f, cookies: cookiesObj }).then(
         (value: PayloadAction<{ res: FileReaderResponse; cookies: CookiesObject }>) => {
-          console.log(value)
           const data = value.payload.res.result
           sortCookie(data, cookieUrls, onAddCookie, index)
         }

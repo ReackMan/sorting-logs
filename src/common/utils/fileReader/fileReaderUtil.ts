@@ -12,5 +12,5 @@ export const fileReaderUtil = async ({ file }: Props): Promise<FileReaderRespons
     reader.readAsText(file)
   })
 
-  return { result, name: file.name }
+  return { result, name: file.name, size: file.size }
 }

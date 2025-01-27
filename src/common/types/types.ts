@@ -78,12 +78,14 @@ export type AddCookieObj = {
 
 export type ReadPasswordsFile = {
   name: string
+  size: number
   passString: FileReaderResult
   passObj: PasswordsObject
 }
 
 export type ReadCookiesFile = {
   name: string
+  size: number
   cookiesString: FileReaderResult
   cookiesObj: CookiesObject
 }
@@ -93,4 +95,5 @@ export type FileReaderResult = string | ArrayBuffer | null
 export type FileReaderResponse = {
   result: FileReaderResult
   name: string
+  size: number
 }

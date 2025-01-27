@@ -160,10 +160,13 @@ export const sortCookiesSlice = createSlice({
     builder.addCase(readCookies.fulfilled, (state, action) => {
       const cookiesString = action.payload.res.result
       const name = action.payload.res.name
+      const responseObj = action.payload.cookies
+      const size = action.payload.res.size
       const newObj: ReadCookiesFile = {
         name: name,
+        size: size,
         cookiesString: cookiesString,
-        cookiesObj: { ...action.payload.cookies },
+        cookiesObj: { ...responseObj },
       }
       state.files.push(newObj)
     })

@@ -170,10 +170,13 @@ export const sortPassSlice = createSlice({
     builder.addCase(readPasswords.fulfilled, (state, action) => {
       const passString = action.payload.res.result
       const name = action.payload.res.name
+      const responseObj = action.payload.passwords
+      const size = action.payload.res.size
       const newObj: ReadPasswordsFile = {
         name: name,
+        size: size,
         passString: passString,
-        passObj: { ...action.payload.passwords },
+        passObj: { ...responseObj },
       }
       state.files.push(newObj)
     })
