@@ -1,0 +1,39 @@
+.main {
+  display: flex;
+  flex-direction: column;
+
+  /* gap: 100px; */
+}
+
+.data {
+  display: flex;
+  gap: 100px;
+}
+
+.cookies {
+  display: flex;
+  flex-direction: column;
+}
+
+.passwords {
+  display: flex;
+  flex-direction: column;
+}
+
+.uploadedSpan {
+  margin-bottom: 20px;
+  color: #48b93b;
+}
+
+.fileName {
+  margin-bottom: 20px;
+}
+
+.notUploadedSpan {
+  margin-bottom: 20px;
+  color: #f00;
+}
+
+.sortFiles {
+  margin-bottom: 20px;
+}

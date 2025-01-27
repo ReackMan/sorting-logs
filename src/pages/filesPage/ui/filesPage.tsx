@@ -1,4 +1,4 @@
-import s from '@app/ui/app.module.css'
+import s from './filesPage.module.css'
 import { Cookies, DnD, Passwords } from '@/components'
 import { useSortFilesOptions } from '@features/sortFiles'
 import { useFilesPage } from '@/app'
@@ -32,7 +32,7 @@ export const FilesPage = () => {
       ) : (
         <span className={s.notUploadedSpan}>Files not uploaded</span>
       )}
-      <button onClick={sortFiles} disabled={!isUpload}>
+      <button className={s.sortFiles} onClick={sortFiles} disabled={!isUpload}>
         Sort Files
       </button>
       <div className={s.data}>
