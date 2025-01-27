@@ -1,17 +1,10 @@
-import { useEffect } from 'react'
-import { useSortPassOptions } from '@/features'
-import List from '@mui/material/List'
 import ListSubheader from '@mui/material/ListSubheader'
+import List from '@mui/material/List'
+import { useSortPassOptions } from '@/features'
 import { PasswordsList } from '@components/ui/passwords/list/PasswordsList.tsx'
 
-export const Passwords = () => {
-  const { onSetPassInitialState, passwordsObjects, urls } = useSortPassOptions()
-
-  useEffect(() => {
-    onSetPassInitialState()
-  }, [])
-
-  // const { passwordsObjects, urls } = useSortPassOptions()
+export const ListCookies = () => {
+  const { passwordsObjects, urls } = useSortPassOptions()
   return (
     <List
       sx={{ width: '100%' }}
@@ -24,7 +17,7 @@ export const Passwords = () => {
           color="default"
           sx={{ borderRadius: 2 }}
         >
-          Passwords List
+          Cookies List
         </ListSubheader>
       }
     >

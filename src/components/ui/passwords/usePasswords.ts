@@ -1,15 +1,11 @@
-import { PasswordType, UrlType } from '@/components'
-
-export type AddPasswordObj = {
-  obj: PasswordType
-  url: string
-}
+import { AddPasswordObj, PasswordType, UrlType } from '@/common'
 
 export const usePasswords = () => {
   const sortPass = (
     data: string,
     urls: UrlType[],
-    onAddPassword: ({ obj, url }: AddPasswordObj) => void
+    onAddFiles: ({ obj, url, id }: AddPasswordObj) => void,
+    id: number
   ) => {
     const sort1 = data.split('\r\n').filter(str => str != '')
     const sort2: PasswordType[] = []
@@ -22,28 +18,29 @@ export const usePasswords = () => {
       i += 3
     }
 
-    const checker = (text: string, words: string[], obj: PasswordType) => {
+    const checker = (urls: string[], obj: PasswordType) => {
       let counter = 0
 
-      for (let i = 0; i < words.length; i++) {
-        if (text.includes(words[i])) counter++
+      for (let i = 0; i < urls.length; i++) {
+        if (obj.url.includes(urls[i])) {
+          counter++
+        }
       }
 
       if (counter > 0) {
-        onAddPassword({ obj, url: words[0] })
+        onAddFiles({ obj, url: urls[0], id })
         return true
       }
     }
 
-    const updatedChecker = (passwordUrl: string, obj: PasswordType) => {
+    const updatedChecker = (obj: PasswordType) => {
       for (let i = 0; i < urls.length; i++) {
-        if (checker(passwordUrl, urls[i].urls, obj)) return true
+        if (checker(urls[i].urls, obj)) return true
       }
     }
 
     sort2.forEach(obj => {
-      const passwordUrl = obj.url
-      if (!updatedChecker(passwordUrl, obj)) onAddPassword({ obj, url: 'other' })
+      if (!updatedChecker(obj)) onAddFiles({ obj, url: 'other', id })
     })
   }
   return {

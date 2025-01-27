@@ -1,5 +1,12 @@
 .main {
   display: flex;
+  flex-direction: column;
+
+  /* gap: 100px; */
+}
+
+.data {
+  display: flex;
   gap: 100px;
 }
 

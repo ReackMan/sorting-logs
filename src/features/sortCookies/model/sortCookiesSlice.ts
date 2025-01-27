@@ -1,11 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {
-  FileReaderResponse,
-  fileReaderUtil,
-  PasswordsObject,
-  PasswordType,
-  ReadPasswordsFile,
-} from '@/common'
+import { CookiesObject, FileReaderResponse, fileReaderUtil, ReadCookiesFile } from '@/common'
 
 const initialState = {
   urls: [
@@ -110,75 +104,71 @@ const initialState = {
       urls: [],
     },
   ],
-  files: [] as ReadPasswordsFile[],
-  passwords: {
-    google: [],
-    riot: [],
-    epic: [],
-    steam: [],
-    microsoft: [],
-    yahoo: [],
-    wargaming: [],
-    roblox: [],
-    origin: [],
-    warface: [],
-    battle: [],
-    genshin: [],
-    rockstar: [],
-    instagram: [],
-    facebook: [],
-    supercell: [],
-    minecraft: [],
-    tiktok: [],
-    spotify: [],
-    ubisoft: [],
-    discord: [],
-    twitch: [],
-    netflix: [],
-    amazon: [],
-    other: [],
-  } as PasswordsObject,
+  files: [] as ReadCookiesFile[],
+  cookies: {
+    google: { count: 0 },
+    riot: { count: 0 },
+    epic: { count: 0 },
+    steam: { count: 0 },
+    microsoft: { count: 0 },
+    yahoo: { count: 0 },
+    wargaming: { count: 0 },
+    roblox: { count: 0 },
+    origin: { count: 0 },
+    warface: { count: 0 },
+    battle: { count: 0 },
+    genshin: { count: 0 },
+    rockstar: { count: 0 },
+    instagram: { count: 0 },
+    facebook: { count: 0 },
+    supercell: { count: 0 },
+    minecraft: { count: 0 },
+    tiktok: { count: 0 },
+    spotify: { count: 0 },
+    ubisoft: { count: 0 },
+    discord: { count: 0 },
+    twitch: { count: 0 },
+    netflix: { count: 0 },
+    amazon: { count: 0 },
+    other: { count: 0 },
+  } as CookiesObject,
 }
 
-const readPasswords = createAsyncThunk<
-  { res: FileReaderResponse; passwords: PasswordsObject },
-  { file: File; passwords: PasswordsObject }
->('sortPass/readPasswords', async ({ file, passwords }) => {
+const readCookies = createAsyncThunk<
+  { res: FileReaderResponse; cookies: CookiesObject },
+  { file: File; cookies: CookiesObject }
+>('sortCookies/readCookies', async ({ file, cookies }) => {
   return {
     res: await fileReaderUtil({ file }),
-    passwords: passwords,
+    cookies: cookies,
   }
 })
 
-export const sortPassSlice = createSlice({
-  name: 'sortPass',
+export const sortCookiesSlice = createSlice({
+  name: 'sortCookies',
   initialState,
   reducers: {
-    addPassword: (state, action: PayloadAction<{ obj: PasswordType; url: string; id: number }>) => {
+    addCookie: (state, action: PayloadAction<{ url: string; id: number }>) => {
       const url = action.payload.url.split('.')[0]
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
-      const pass = state.files[action.payload.id].passObj[url]
-      pass.push(action.payload.obj)
-    },
-    clearPasswords: state => {
-      state.passwords = initialState.passwords
+      state.files[action.payload.id].cookiesObj[url].count += 1
     },
     setInitialState: () => initialState,
   },
   extraReducers: builder => {
-    builder.addCase(readPasswords.fulfilled, (state, action) => {
-      const passString = action.payload.res.result
+    builder.addCase(readCookies.fulfilled, (state, action) => {
+      const cookiesString = action.payload.res.result
       const name = action.payload.res.name
-      const newObj: ReadPasswordsFile = {
+      const newObj: ReadCookiesFile = {
         name: name,
-        passString: passString,
-        passObj: { ...action.payload.passwords },
+        cookiesString: cookiesString,
+        cookiesObj: { ...action.payload.cookies },
       }
       state.files.push(newObj)
     })
   },
 })
 
-export const sortPassActions = sortPassSlice.actions
-export const sortPassThunks = { readPasswords }
+export const sortCookiesActions = sortCookiesSlice.actions
+export const sortCookiesThunks = { readCookies }

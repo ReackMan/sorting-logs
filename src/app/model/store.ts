@@ -1,10 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { sortPassSlice } from '@/features'
+import { sortCookiesSlice, sortFilesSlice, sortPassSlice } from '@/features'
 
 export const store = configureStore({
   reducer: {
     [sortPassSlice.name]: sortPassSlice.reducer,
+    [sortFilesSlice.name]: sortFilesSlice.reducer,
+    [sortCookiesSlice.name]: sortCookiesSlice.reducer,
   },
+  middleware: getDefaultMiddleware => getDefaultMiddleware(),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

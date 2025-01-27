@@ -1,5 +1,3 @@
-// import { Password, PasswordsObject } from './Passwords.tsx'
-//
 // type Props = {
 //   passwordsObj: PasswordsObject
 //   urls: string[]
@@ -9,10 +7,8 @@
 //   return (
 //     <ul>
 //       {urls.map(u => {
-//         // console.log(u)
 //         // @ts-ignore
 //         const passObj = passwordsObj[u]
-//         console.log(passObj)
 //         return (
 //           <li>
 //             {u}

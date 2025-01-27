@@ -1,22 +1,22 @@
 import List from '@mui/material/List'
-import { Password } from '@components/ui/passwords/list/Password.tsx'
-import { ReadPasswordsFile, UrlType } from '@/common'
+import { ReadCookiesFile, UrlType } from '@/common'
+import { Cookie } from '@components/ui/cookies/list/Cookie.tsx'
+import { useState } from 'react'
+import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
-import ListItemButton from '@mui/material/ListItemButton'
 import Collapse from '@mui/material/Collapse'
-import { useState } from 'react'
 
 type Props = {
-  file: ReadPasswordsFile
+  file: ReadCookiesFile
   urls: UrlType[]
 }
 
-export const PasswordsList = ({ file, urls }: Props) => {
+export const CookiesList = ({ urls, file }: Props) => {
   const [open, setOpen] = useState(false)
 
-  if (Object.keys(file.passObj).length === 0) return
+  if (Object.keys(file.cookiesObj).length === 0) return
 
   const handleClick = () => {
     setOpen(!open)
@@ -40,7 +40,7 @@ export const PasswordsList = ({ file, urls }: Props) => {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List sx={style} component="div" disablePadding>
           {urls.map(u => {
-            return <Password url={u.name} passwordsObj={file.passObj} />
+            return <Cookie url={u.name} cookiesObj={file.cookiesObj} />
           })}
         </List>
       </Collapse>

@@ -154,7 +154,5 @@
 //   passwords.warface = warface
 //   passwords.battlenet = battlenet
 //
-//   // console.log(sort2)
 //
-//   console.log(passwords)
-// }
+//}

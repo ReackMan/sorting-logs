@@ -6,12 +6,12 @@ import ExpandMore from '@mui/icons-material/ExpandMore'
 import Collapse from '@mui/material/Collapse'
 import List from '@mui/material/List'
 import { Divider, ListItem } from '@mui/material'
-import { PasswordsObject, PasswordType } from '../Passwords.tsx'
 import LinkIcon from '@mui/icons-material/Link'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import LoginIcon from '@mui/icons-material/Login'
 import PasswordIcon from '@mui/icons-material/Password'
 import LockOpenIcon from '@mui/icons-material/LockOpen'
+import { PasswordsObject, PasswordType } from '@/common'
 
 type Props = {
   passwordsObj: PasswordsObject
