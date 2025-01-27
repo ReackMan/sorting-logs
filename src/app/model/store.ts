@@ -7,7 +7,10 @@ export const store = configureStore({
     [sortFilesSlice.name]: sortFilesSlice.reducer,
     [sortCookiesSlice.name]: sortCookiesSlice.reducer,
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware(),
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

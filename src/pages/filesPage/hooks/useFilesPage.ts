@@ -1,6 +1,8 @@
 import { useSortCookiesOptions, useSortPassOptions } from '@/features'
 import { usePasswords } from '@components/ui/passwords/usePasswords.ts'
 import { useCookies } from '@components/ui/cookies/useCookies.ts'
+import { PayloadAction } from '@reduxjs/toolkit'
+import { CookiesObject, FileReaderResponse, PasswordsObject } from '@/common'
 
 type Props = {
   files: File[]
@@ -34,19 +36,25 @@ export const useFilesPage = ({ files, readPasswords, readCookies }: Props) => {
     ////// PASSWORDS //////
 
     passwords.forEach((f, index) => {
-      readPasswords({ file: f, passwords: passObj }).then(value => {
-        const data = value.payload.res.result
-        sortPass(data, passUrls, onAddPassword, index)
-      })
+      readPasswords({ file: f, passwords: passObj }).then(
+        (value: PayloadAction<{ res: FileReaderResponse; passwords: PasswordsObject }>) => {
+          console.log(value)
+          const data = value.payload.res.result
+          sortPass(data, passUrls, onAddPassword, index)
+        }
+      )
     })
 
     ////// COOKIES //////
 
     cookies.forEach((f, index) => {
-      readCookies({ file: f, cookies: cookiesObj }).then(value => {
-        const data = value.payload.res.result
-        sortCookie(data, cookieUrls, onAddCookie, index)
-      })
+      readCookies({ file: f, cookies: cookiesObj }).then(
+        (value: PayloadAction<{ res: FileReaderResponse; cookies: CookiesObject }>) => {
+          console.log(value)
+          const data = value.payload.res.result
+          sortCookie(data, cookieUrls, onAddCookie, index)
+        }
+      )
     })
   }
 

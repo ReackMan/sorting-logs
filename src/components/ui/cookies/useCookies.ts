@@ -1,12 +1,14 @@
-import { AddCookieObj, UrlType } from '@/common'
+import { AddCookieObj, FileReaderResult, UrlType } from '@/common'
 
 export const useCookies = () => {
   const sortCookie = (
-    data: string,
+    data: FileReaderResult,
     urls: UrlType[],
     onAddCookie: ({ url, id }: AddCookieObj) => void,
     id: number
   ) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     const sort1 = data.split('\r\n')
     const sort2: string[] = []
     for (let i = 0; i < sort1.length; i++) {

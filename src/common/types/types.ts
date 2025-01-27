@@ -78,13 +78,13 @@ export type AddCookieObj = {
 
 export type ReadPasswordsFile = {
   name: string
-  passString: string | ArrayBuffer
+  passString: FileReaderResult
   passObj: PasswordsObject
 }
 
 export type ReadCookiesFile = {
   name: string
-  cookiesString: string | ArrayBuffer
+  cookiesString: FileReaderResult
   cookiesObj: CookiesObject
 }
 

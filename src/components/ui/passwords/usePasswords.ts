@@ -1,12 +1,14 @@
-import { AddPasswordObj, PasswordType, UrlType } from '@/common'
+import { AddPasswordObj, FileReaderResult, PasswordType, UrlType } from '@/common'
 
 export const usePasswords = () => {
   const sortPass = (
-    data: string,
+    data: FileReaderResult,
     urls: UrlType[],
     onAddFiles: ({ obj, url, id }: AddPasswordObj) => void,
     id: number
   ) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     const sort1 = data.split('\r\n').filter(str => str != '')
     const sort2: PasswordType[] = []
     for (let i = 0; i < sort1.length; ) {
